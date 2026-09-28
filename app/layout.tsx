@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -41,9 +39,7 @@ export default function RootLayout({
   return (
     <html lang="af" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body className="bg-veld-black text-veld-cream antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
