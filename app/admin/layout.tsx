@@ -18,27 +18,31 @@ export default async function AdminLayout({
     data: { user },
   } = await supabase.auth.getUser();
 
+  const links = [
+    { href: "/admin", label: "Oorsig" },
+    { href: "/admin/koerant", label: "Koerant" },
+    { href: "/admin/programme", label: "Programme" },
+    { href: "/admin/aanbieders", label: "Aanbieders" },
+  ];
+
   return (
     <div className="min-h-screen bg-veld-black">
       {user && (
         <header className="border-b border-white/8 bg-veld-charcoal">
-          <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-            <nav className="flex items-center gap-5 text-sm font-medium">
+          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
+            <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium">
               <span className="font-display font-bold text-veld-amber">
                 Veldbrand Admin
               </span>
-              <Link
-                href="/admin"
-                className="text-veld-muted transition-colors hover:text-veld-cream"
-              >
-                Oorsig
-              </Link>
-              <Link
-                href="/admin/koerant"
-                className="text-veld-muted transition-colors hover:text-veld-cream"
-              >
-                Koerant
-              </Link>
+              {links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="text-veld-muted transition-colors hover:text-veld-cream"
+                >
+                  {l.label}
+                </Link>
+              ))}
             </nav>
             <LogoutButton />
           </div>

@@ -1,12 +1,30 @@
-"use client";
+import { createClient } from "@/lib/supabase/server";
+import ProgrammeSchedule from "@/components/ProgrammeSchedule";
 
-import { useState } from "react";
-import { schedule } from "@/lib/programming-data";
-import ProgramCard from "@/components/ProgramCard";
+export default async function ProgrammeringPage() {
+  const supabase = await createClient();
 
-export default function ProgrammeringPage() {
-  const [activeDay, setActiveDay] = useState(schedule[0].day);
-  const current = schedule.find((d) => d.day === activeDay) ?? schedule[0];
+  const [{ data: programs }, { data: hosts }] = await Promise.all([
+    supabase
+      .from("programs")
+      .select("id, title, description, tag, host_id, days, start_time, end_time")
+      .eq("active", true)
+      .order("start_time", { ascending: true }),
+    supabase.from("hosts").select("id, name"),
+  ]);
+
+  const hostNames = new Map((hosts ?? []).map((h) => [h.id, h.name]));
+
+  const items = (programs ?? []).map((p) => ({
+    id: p.id,
+    title: p.title,
+    description: p.description,
+    tag: p.tag,
+    host: p.host_id ? hostNames.get(p.host_id) ?? null : null,
+    start: String(p.start_time).slice(0, 5),
+    end: String(p.end_time).slice(0, 5),
+    days: p.days as number[],
+  }));
 
   return (
     <div className="relative bg-veld-black">
@@ -21,42 +39,12 @@ export default function ProgrammeringPage() {
             Wat Speel Wanneer
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-balance text-veld-muted">
-            Kies 'n dag om te sien watter programme regstreeks is &mdash; van
+            Kies 'n dag om te sien watter programme regstreeks is — van
             vroegoggend tot laataand.
           </p>
         </div>
 
-        <div
-          role="tablist"
-          aria-label="Kies 'n dag"
-          className="mt-10 flex gap-2 overflow-x-auto pb-2 sm:justify-center"
-        >
-          {schedule.map((d) => {
-            const active = d.day === activeDay;
-            return (
-              <button
-                key={d.day}
-                role="tab"
-                aria-selected={active}
-                onClick={() => setActiveDay(d.day)}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                  active
-                    ? "bg-veld-glow text-veld-black shadow-glow"
-                    : "border border-white/10 bg-white/5 text-veld-muted hover:text-veld-cream"
-                }`}
-              >
-                <span className="sm:hidden">{d.short}</span>
-                <span className="hidden sm:inline">{d.day}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <ul role="tabpanel" className="mt-8 grid gap-4 sm:grid-cols-2">
-          {current.programs.map((program) => (
-            <ProgramCard key={program.id} program={program} />
-          ))}
-        </ul>
+        <ProgrammeSchedule programs={items} />
       </div>
     </div>
   );

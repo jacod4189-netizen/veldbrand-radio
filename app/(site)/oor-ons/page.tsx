@@ -1,3 +1,5 @@
+import { createClient } from "@/lib/supabase/server";
+
 const WAARDES = [
   {
     title: "Plaaslik",
@@ -5,24 +7,22 @@ const WAARDES = [
   },
   {
     title: "Musiek",
-    desc: "Van boeremusiek tot hedendaagse treffers &mdash; altyd Afrikaans in die hart.",
+    desc: "Van boeremusiek tot hedendaagse treffers — altyd Afrikaans in die hart.",
   },
   {
     title: "Gemeenskap",
-    desc: "Veldbrand is meer as 'n stasie &mdash; dit is 'n plek waar luisteraars saam behoort.",
+    desc: "Veldbrand is meer as 'n stasie — dit is 'n plek waar luisteraars saam behoort.",
   },
 ];
 
-const SPAN = [
-  { naam: "Pieter & Marisa", rol: "Oggendvuur" },
-  { naam: "Elmarie Coetzee", rol: "Middagmelodie" },
-  { naam: "Herman Smit", rol: "Kletskombuis" },
-  { naam: "DJ Reinier", rol: "Skoftydmusiek" },
-  { naam: "Chané & Willem", rol: "Ryvuur" },
-  { naam: "Riaan Botha", rol: "Aandgloed" },
-];
+export default async function OorOnsPage() {
+  const supabase = await createClient();
+  const { data: hosts } = await supabase
+    .from("hosts")
+    .select("id, name, role, bio, photo_url")
+    .order("sort_order", { ascending: true })
+    .order("name", { ascending: true });
 
-export default function OorOnsPage() {
   return (
     <div className="relative bg-veld-black">
       <div className="pointer-events-none absolute inset-0 bg-veld-radial" />
@@ -65,32 +65,44 @@ export default function OorOnsPage() {
           </p>
         </div>
 
-        <div className="mt-16">
-          <h2 className="text-center font-display text-2xl font-bold text-veld-cream sm:text-3xl">
-            Ontmoet Ons Aanbieders
-          </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {SPAN.map((persoon) => (
-              <div
-                key={persoon.naam}
-                className="flex items-center gap-4 rounded-2xl border border-white/8 bg-veld-charcoal2 p-5"
-              >
+        {hosts && hosts.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-center font-display text-2xl font-bold text-veld-cream sm:text-3xl">
+              Ontmoet Ons Aanbieders
+            </h2>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {hosts.map((h) => (
                 <div
-                  aria-hidden="true"
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-veld-glow font-display text-lg font-bold text-veld-black"
+                  key={h.id}
+                  className="flex items-center gap-4 rounded-2xl border border-white/8 bg-veld-charcoal2 p-5"
                 >
-                  {persoon.naam.charAt(0)}
+                  {h.photo_url ? (
+                    <img
+                      src={h.photo_url}
+                      alt=""
+                      className="h-14 w-14 shrink-0 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div
+                      aria-hidden="true"
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-veld-glow font-display text-xl font-bold text-veld-black"
+                    >
+                      {h.name.charAt(0)}
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-display font-semibold text-veld-cream">
+                      {h.name}
+                    </p>
+                    {h.role && (
+                      <p className="text-sm text-veld-muted">{h.role}</p>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <p className="font-display font-semibold text-veld-cream">
-                    {persoon.naam}
-                  </p>
-                  <p className="text-sm text-veld-muted">{persoon.rol}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
