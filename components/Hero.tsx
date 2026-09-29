@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
@@ -10,19 +11,27 @@ export default function Hero() {
         className="pointer-events-none absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-veld-amber/20 blur-[100px]"
       />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-28">
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-24">
         <span className="inline-flex items-center gap-2 rounded-full border border-veld-amber/30 bg-veld-amber/10 px-4 py-1.5 text-xs font-medium tracking-wide text-veld-amber2">
           <LiveDot />
           Nou Regstreeks
         </span>
 
-        <h1 className="mt-6 text-balance font-display text-4xl font-bold leading-tight text-veld-cream sm:text-6xl md:text-7xl">
-          Veldbrand{" "}
-          <span className="bg-veld-glow bg-clip-text text-transparent">Radio</span>
+        <h1 className="-my-4 mt-2 w-full max-w-[560px] sm:-my-8">
+          <span className="sr-only">Veldbrand Radio</span>
+          <Image
+            src="/logo-wide.jpg"
+            alt=""
+            aria-hidden="true"
+            width={1170}
+            height={482}
+            priority
+            className="h-auto w-full mix-blend-screen"
+          />
         </h1>
 
-        <p className="mt-5 max-w-xl text-balance text-lg text-veld-muted sm:text-xl">
-          Jou Afrikaanse stasie in beeld en klank.
+        <p className="mt-5 max-w-xl text-lg text-veld-muted sm:text-xl">
+          <span className="block font-semibold text-veld-cream">Dis mos radio.</span>
         </p>
 
         <p className="mt-3 max-w-lg text-balance text-sm text-veld-muted/80 sm:text-base">

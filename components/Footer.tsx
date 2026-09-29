@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getSettings } from "@/lib/get-settings";
 import { telHref } from "@/lib/settings";
@@ -16,15 +17,21 @@ export default async function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 font-display text-lg font-bold text-veld-cream">
-              <span
-                aria-hidden="true"
-                className="inline-block h-2.5 w-2.5 rounded-full bg-veld-glow"
+            <Link
+              href="/"
+              aria-label="Veldbrand Radio – terug na die tuisblad"
+              className="-my-3 inline-block"
+            >
+              <Image
+                src="/logo-wide.jpg"
+                alt="Veldbrand Radio"
+                width={1170}
+                height={482}
+                className="h-auto w-44 mix-blend-screen"
               />
-              Veldbrand <span className="text-veld-amber">Radio</span>
-            </div>
+            </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-veld-muted">
-              {s.station_message} Jou Afrikaanse stasie in beeld en klank.
+              {s.station_message}
             </p>
             {socials.length > 0 && (
               <ul className="mt-4 flex flex-wrap gap-2">
