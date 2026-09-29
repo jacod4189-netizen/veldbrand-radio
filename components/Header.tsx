@@ -1,12 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 const NAV_LINKS = [
   { href: "/", label: "Tuis" },
   { href: "/programmering", label: "Programme" },
-  { href: "/koerant", label: "Koerant" },
   { href: "/oor-ons", label: "Oor Ons" },
   { href: "/kontak", label: "Kontak" },
 ];
@@ -19,14 +19,18 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-veld-cream"
+          aria-label="Veldbrand Radio – terug na die tuisblad"
+          className="flex items-center"
           onClick={() => setOpen(false)}
         >
-          <span
-            aria-hidden="true"
-            className="inline-block h-2.5 w-2.5 rounded-full bg-veld-glow shadow-glow"
+          <Image
+            src="/logo-wide.jpg"
+            alt="Veldbrand Radio"
+            width={1170}
+            height={482}
+            priority
+            className="h-14 w-auto mix-blend-screen"
           />
-          Veldbrand <span className="text-veld-amber">Radio</span>
         </Link>
 
         <nav aria-label="Hoofnavigasie" className="hidden items-center gap-8 md:flex">

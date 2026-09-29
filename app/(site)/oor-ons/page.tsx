@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { getSettings } from "@/lib/get-settings";
 
 const WAARDES = [
   {
@@ -17,6 +18,8 @@ const WAARDES = [
 
 export default async function OorOnsPage() {
   const supabase = await createClient();
+  const s = await getSettings();
+
   const { data: hosts } = await supabase
     .from("hosts")
     .select("id, name, role, bio, photo_url")
@@ -33,13 +36,10 @@ export default async function OorOnsPage() {
             Oor Veldbrand Radio
           </span>
           <h1 className="mt-4 font-display text-4xl font-bold text-veld-cream sm:text-5xl">
-            'n Vuur Wat Ons Almal Saambind
+            {s.about_heading}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-balance text-veld-muted sm:text-lg">
-            Veldbrand Radio het ontstaan uit 'n eenvoudige gedagte: Afrikaanse
-            luisteraars verdien 'n stasie wat na hulle klink, hulle stories
-            vertel en hulle musiek eer. Vandag bring ons daagliks warmte,
-            musiek en gemeenskap na huise regoor Suid-Afrika.
+          <p className="mx-auto mt-4 max-w-2xl whitespace-pre-line text-veld-muted sm:text-lg">
+            {s.about_intro}
           </p>
         </div>
 
@@ -61,7 +61,7 @@ export default async function OorOnsPage() {
 
         <div className="mt-14 rounded-2xl border border-veld-amber/20 bg-veld-amber/5 p-8 text-center">
           <p className="font-display text-2xl font-bold text-veld-cream sm:text-3xl">
-            &ldquo;Die musiek waarna jy heeltyd wil luister.&rdquo;
+            &ldquo;{s.station_message}&rdquo;
           </p>
         </div>
 
@@ -70,11 +70,11 @@ export default async function OorOnsPage() {
             <h2 className="text-center font-display text-2xl font-bold text-veld-cream sm:text-3xl">
               Ontmoet Ons Aanbieders
             </h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {hosts.map((h) => (
                 <div
                   key={h.id}
-                  className="flex items-center gap-4 rounded-2xl border border-white/8 bg-veld-charcoal2 p-5"
+                  className="flex items-start gap-4 rounded-2xl border border-white/8 bg-veld-charcoal2 p-5"
                 >
                   {h.photo_url ? (
                     <img
@@ -90,12 +90,17 @@ export default async function OorOnsPage() {
                       {h.name.charAt(0)}
                     </div>
                   )}
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-display font-semibold text-veld-cream">
                       {h.name}
                     </p>
                     {h.role && (
                       <p className="text-sm text-veld-muted">{h.role}</p>
+                    )}
+                    {h.bio && (
+                      <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-veld-muted">
+                        {h.bio}
+                      </p>
                     )}
                   </div>
                 </div>

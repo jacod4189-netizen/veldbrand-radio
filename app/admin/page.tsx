@@ -14,16 +14,14 @@ export default async function AdminDashboardPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const [programme, aanbieders, uitgawes] = await Promise.all([
+  const [programme, aanbieders] = await Promise.all([
     count("programs"),
     count("hosts"),
-    count("editions"),
   ]);
 
   const stats = [
     { label: "Programme", value: programme },
     { label: "Aanbieders", value: aanbieders },
-    { label: "Koerant-uitgawes", value: uitgawes },
   ];
 
   return (

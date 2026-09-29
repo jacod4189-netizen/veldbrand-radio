@@ -20,9 +20,9 @@ export default async function AdminLayout({
 
   const links = [
     { href: "/admin", label: "Oorsig" },
-    { href: "/admin/koerant", label: "Koerant" },
     { href: "/admin/programme", label: "Programme" },
     { href: "/admin/aanbieders", label: "Aanbieders" },
+    { href: "/admin/instellings", label: "Instellings" },
   ];
 
   return (
