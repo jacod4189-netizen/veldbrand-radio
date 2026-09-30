@@ -4,6 +4,42 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-veld-black">
+      <style>{`
+        .dis-mos {
+          background-image: linear-gradient(
+            100deg,
+            #f59e0b 0%,
+            #ea580c 30%,
+            #fff1d6 50%,
+            #ea580c 70%,
+            #f59e0b 100%
+          );
+          background-size: 250% 100%;
+          background-position: 100% 0;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation:
+            dis-mos-sweep 4.5s ease-in-out infinite,
+            dis-mos-glow 3s ease-in-out infinite;
+        }
+        @keyframes dis-mos-sweep {
+          0%, 15% { background-position: 100% 0; }
+          70%, 100% { background-position: 0% 0; }
+        }
+        @keyframes dis-mos-glow {
+          0%, 100% { filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.25)); }
+          50% { filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.55)); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .dis-mos {
+            animation: none;
+            background-position: 30% 0;
+            filter: drop-shadow(0 0 24px rgba(245, 158, 11, 0.35));
+          }
+        }
+      `}</style>
+
       <div className="pointer-events-none absolute inset-0 bg-veld-radial" />
       <div className="bg-noise pointer-events-none absolute inset-0" />
       <div
@@ -30,11 +66,21 @@ export default function Hero() {
           />
         </h1>
 
-        <p className="mt-5 max-w-xl text-lg text-veld-muted sm:text-xl">
-          <span className="block font-semibold text-veld-cream">Dis mos radio.</span>
+        <p className="mt-2 flex items-center justify-center gap-5 sm:mt-4">
+          <span
+            aria-hidden="true"
+            className="hidden h-px w-16 bg-gradient-to-r from-transparent to-veld-amber/70 sm:block"
+          />
+          <span className="dis-mos font-display text-4xl font-extrabold tracking-tight sm:text-6xl">
+            Dis mos radio.
+          </span>
+          <span
+            aria-hidden="true"
+            className="hidden h-px w-16 bg-gradient-to-l from-transparent to-veld-amber/70 sm:block"
+          />
         </p>
 
-        <p className="mt-3 max-w-lg text-balance text-sm text-veld-muted/80 sm:text-base">
+        <p className="mt-5 max-w-lg text-balance text-sm text-veld-muted/80 sm:text-base">
           Luister regstreeks, ontdek ons programme en bly deel van die Veldbrand-gemeenskap.
         </p>
 
