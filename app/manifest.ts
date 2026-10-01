@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Veldbrand Radio",
     short_name: "Veldbrand",
-    description: "Jou Afrikaanse stasie in beeld en klank.",
+    description: "Dis mos radio. Luister regstreeks na Veldbrand Radio.",
     start_url: "/",
     display: "standalone",
     background_color: "#0B0908",

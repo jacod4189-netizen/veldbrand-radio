@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Veldbrand Radio — Jou Afrikaanse stasie in beeld en klank",
+  title: "Veldbrand Radio — Dis mos radio",
   description:
     "Luister regstreeks na Veldbrand Radio. Ontdek ons programme en bly deel van die Veldbrand-gemeenskap.",
   appleWebApp: {
