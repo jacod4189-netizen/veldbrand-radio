@@ -40,6 +40,29 @@ export default function Hero() {
         }
       `}</style>
 
+      {/* Wallpaper */}
+      <Image
+        src="/hero.webp"
+        alt=""
+        aria-hidden="true"
+        fill
+        priority
+        sizes="100vw"
+        quality={75}
+        className="pointer-events-none object-cover object-center"
+      />
+
+      {/* Black fade over the wallpaper */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-black/50"
+      />
+      {/* Extra fade at the bottom so the hero blends into the next section */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-veld-black to-transparent"
+      />
+
       <div className="pointer-events-none absolute inset-0 bg-veld-radial" />
       <div className="bg-noise pointer-events-none absolute inset-0" />
       <div
@@ -80,7 +103,7 @@ export default function Hero() {
           />
         </p>
 
-        <p className="mt-5 max-w-lg text-balance text-sm text-veld-muted/80 sm:text-base">
+        <p className="mt-5 max-w-lg text-balance text-sm text-veld-muted sm:text-base">
           Luister regstreeks, ontdek ons programme en bly deel van die Veldbrand-gemeenskap.
         </p>
 
