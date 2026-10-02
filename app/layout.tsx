@@ -43,4 +43,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+}export const revalidate = 60;

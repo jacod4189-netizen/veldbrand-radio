@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/public";
 import ProgrammeSchedule from "@/components/ProgrammeSchedule";
 
 export default async function ProgrammeringPage() {

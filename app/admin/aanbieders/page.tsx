@@ -13,10 +13,10 @@ export default async function AdminHostsPage() {
   return (
     <div>
       <h1 className="font-display text-3xl font-bold text-veld-cream">
-        Aanbieders
+        Omroepers
       </h1>
       <p className="mt-1 text-sm text-veld-muted">
-        Voeg aanbieders by, wysig hulle besonderhede of verwyder hulle.
+        Voeg Omroepers by, wysig hulle besonderhede of verwyder hulle.
       </p>
       <div className="mt-8">
         <HostsManager hosts={hosts ?? []} />

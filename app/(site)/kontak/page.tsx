@@ -18,8 +18,7 @@ export default async function KontakPage() {
             Kom Ons Gesels
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-balance text-veld-muted">
-            Het jy 'n vraag, wenspeletjie-inskrywing of voorstel? Stuur vir ons
-            'n boodskap.
+            Het jy 'n vraag of voorstel? Stuur vir ons 'n boodskap.
           </p>
         </div>
 

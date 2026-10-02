@@ -122,7 +122,7 @@ export default function HostsManager({ hosts }: { hosts: Host[] }) {
       if (oldPath) await supabase.storage.from(BUCKET).remove([oldPath]);
     }
 
-    setSukses(editing ? "Aanbieder opgedateer." : "Aanbieder bygevoeg.");
+    setSukses(editing ? "Omroeper opgedateer." : "Omroeper bygevoeg.");
     resetForm();
     setBesig(false);
     router.refresh();
@@ -130,7 +130,7 @@ export default function HostsManager({ hosts }: { hosts: Host[] }) {
 
   async function handleDelete(h: Host) {
     const seker = window.confirm(
-      `Verwyder ${h.name}? Programme wat aan hierdie aanbieder gekoppel is, sal sonder 'n aanbieder wees.`
+      `Verwyder ${h.name}? Programme wat aan hierdie omroeper gekoppel is, sal sonder 'n omroeper wees.`
     );
     if (!seker) return;
 
@@ -151,7 +151,7 @@ export default function HostsManager({ hosts }: { hosts: Host[] }) {
 
     if (editing?.id === h.id) resetForm();
     setVerwyder(null);
-    setSukses("Aanbieder verwyder.");
+    setSukses("Omroeper verwyder.");
     router.refresh();
   }
 
@@ -165,7 +165,7 @@ export default function HostsManager({ hosts }: { hosts: Host[] }) {
         className="space-y-5 rounded-2xl border border-white/8 bg-veld-charcoal2 p-6 shadow-card"
       >
         <h2 className="font-display text-xl font-bold text-veld-cream">
-          {editing ? `Wysig ${editing.name}` : "Voeg nuwe aanbieder by"}
+          {editing ? `Wysig ${editing.name}` : "Voeg nuwe omroeper by"}
         </h2>
 
         <div>
@@ -192,7 +192,7 @@ export default function HostsManager({ hosts }: { hosts: Host[] }) {
             type="text"
             value={rol}
             onChange={(e) => setRol(e.target.value)}
-            placeholder="bv. Oggendvuur-aanbieder"
+            placeholder="bv. Oggendvuur-omroeper"
             className={inputClass}
           />
         </div>
@@ -284,12 +284,12 @@ export default function HostsManager({ hosts }: { hosts: Host[] }) {
 
       <div>
         <h2 className="font-display text-xl font-bold text-veld-cream">
-          Alle aanbieders ({hosts.length})
+          Alle omroepers ({hosts.length})
         </h2>
 
         {hosts.length === 0 ? (
           <p className="mt-4 rounded-2xl border border-white/8 bg-veld-charcoal2 p-6 text-sm text-veld-muted">
-            Nog geen aanbieders nie. Voeg die eerste een hierbo by.
+            Nog geen omroepers nie. Voeg die eerste een hierbo by.
           </p>
         ) : (
           <ul className="mt-4 divide-y divide-white/8 overflow-hidden rounded-2xl border border-white/8 bg-veld-charcoal2">

@@ -202,7 +202,7 @@ export default function ProgramsManager({
 
         <div>
           <label htmlFor="host" className="block text-sm font-medium text-veld-cream">
-            Aanbieder
+            Omroeper
           </label>
           <select
             id="host"
@@ -210,7 +210,7 @@ export default function ProgramsManager({
             onChange={(e) => setHostId(e.target.value)}
             className={inputClass}
           >
-            <option value="">Geen aanbieder</option>
+            <option value="">Geen omroeper</option>
             {hosts.map((h) => (
               <option key={h.id} value={h.id}>
                 {h.name}
@@ -219,7 +219,7 @@ export default function ProgramsManager({
           </select>
           {hosts.length === 0 && (
             <p className="mt-1.5 text-xs text-veld-muted/70">
-              Voeg eers aanbieders by onder &quot;Aanbieders&quot;.
+              Voeg eers omroeper by onder &quot;Omroeper&quot;.
             </p>
           )}
         </div>

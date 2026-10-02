@@ -21,7 +21,7 @@ export default async function AdminLayout({
   const links = [
     { href: "/admin", label: "Oorsig" },
     { href: "/admin/programme", label: "Programme" },
-    { href: "/admin/aanbieders", label: "Aanbieders" },
+    { href: "/admin/aanbieders", label: "Omroepers" },
     { href: "/admin/instellings", label: "Instellings" },
   ];
 
@@ -32,7 +32,7 @@ export default async function AdminLayout({
           <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
             <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium">
               <span className="font-display font-bold text-veld-amber">
-                Veldbrand Admin
+                Veldbrand Radio Admin Paneel
               </span>
               {links.map((l) => (
                 <Link

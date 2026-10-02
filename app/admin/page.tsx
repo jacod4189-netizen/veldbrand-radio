@@ -21,7 +21,7 @@ export default async function AdminDashboardPage() {
 
   const stats = [
     { label: "Programme", value: programme },
-    { label: "Aanbieders", value: aanbieders },
+    { label: "Omroepers", value: aanbieders },
   ];
 
   return (

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/public";
 import { getSettings } from "@/lib/get-settings";
 
 const WAARDES = [
@@ -68,7 +68,7 @@ export default async function OorOnsPage() {
         {hosts && hosts.length > 0 && (
           <div className="mt-16">
             <h2 className="text-center font-display text-2xl font-bold text-veld-cream sm:text-3xl">
-              Ontmoet Ons Aanbieders
+              Ontmoet Ons Omroepers.
             </h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {hosts.map((h) => (

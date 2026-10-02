@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/public";
 import {
   DEFAULT_SETTINGS,
   SETTING_KEYS,
