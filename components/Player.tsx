@@ -26,17 +26,26 @@ export default function Player() {
           </p>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-veld-charcoal2 p-2 shadow-card sm:p-3">
-          <div className="overflow-hidden rounded-xl">
-            <iframe
-              width="100%"
-              height="330"
-              src="https://sv2.famcast.co.za/AudioPlayer/veldbrand-radio?mount="
-              style={{ border: 0, display: "block" }}
-              title="Luister regstreeks na Veldbrand Radio"
-              allow="autoplay"
-            />
-          </div>
+        <div className="mt-8 rounded-2xl border border-white/10 bg-veld-charcoal2 p-8 text-center shadow-card sm:p-10">
+          <p className="text-sm text-veld-muted sm:text-base">
+            Die speler bly onderaan jou skerm, selfs wanneer jy na ander
+            bladsye gaan.
+          </p>
+          <a
+            href="#player"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-veld-glow px-6 py-3 text-sm font-semibold text-veld-black shadow-glow transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-veld-amber motion-reduce:transition-none"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Maak die speler oop
+          </a>
         </div>
 
         <p className="mt-4 text-center text-xs text-veld-muted/70">

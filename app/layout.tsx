@@ -7,6 +7,7 @@ import {
   SITE_TAGLINE,
   SITE_DESCRIPTION,
 } from "../lib/site";
+import PersistentPlayer from "@/components/PersistentPlayer";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -104,6 +105,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <PersistentPlayer />
       </body>
     </html>
   );
